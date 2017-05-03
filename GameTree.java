@@ -24,7 +24,7 @@ class GameTree{
 
   	Vector<HexMove> moves;
     HexBoard newB;
-  	int move = 0;
+  	int move = 105;
 
     // move to play
     moves = parent.currBoard.moves(color);

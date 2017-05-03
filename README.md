@@ -31,3 +31,7 @@ Thought Questions. Consider the following questions as you complete the lab:
 2. If you implement the learning machine, pit two machines against each other. Gardner called the computer to move first H.I.M., and the machine to move second H.E.R. Will H.I.M. or H.E.R. ultimately win more frequently? Explain your reasoning in a short write-up. What happens for larger boards?
 
 For a 3x3 scenario, H.E.R. will ultimately win more frequently because they play a reaction game, watching H.I.M. plow and along and countering every move. H.I.M. does not have this luxury or too many options. Given a larger board, I imagine that the difference between the two will lessen because there are more possible moves, which makes the game harder to predict, but that, ultimately, the same principles of action and strategic reaction/counter will still apply.
+
+After a certain point, the game will always be a stalemate. And since the game as is grants the win to the player whose turn it is
+when the stalemate occurs or the player who goes second; H.E.R. will ultimately win more games. While H.I.M. would prune off
+all branches that result in a loss, so does H.E.R.. And since each game will end in either a win or a loss, H.I.M. would always end up with an empty tree and then have only the option to resign, resigning first since H.I.M. is forced to go first.
