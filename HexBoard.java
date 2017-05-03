@@ -1,3 +1,7 @@
+/*
+Will Fung and Grace Mazzarella
+*/
+
 // A class for representing a HexAPawn board.
 // (c) 2000, 2001 duane a. bailey
 
@@ -54,13 +58,13 @@ public class HexBoard
     // pre: m is WHITE or BLACK
     // post: returns opponent
     {
-	return (m == WHITE)? BLACK: WHITE;    
+	return (m == WHITE)? BLACK: WHITE;
     }
 
     public boolean win(char m)
     // pre: m is WHITE or BLACK
     // post: returns true if m is in a winning position
-    {	
+    {
 	if (m == WHITE)
 	{
 	    for (int pos = (rows-1)*cols; pos < rows*cols; pos++)
