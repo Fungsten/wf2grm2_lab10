@@ -34,25 +34,19 @@ public class GameNode{
 
   public String toSillyString(){
     String moves = "";
-    //moves = moves + "I look like this: \n" + this.currBoard.toString();
-    //System.out.println("I am Brady ruining your code ");
-
+    moves = moves + "I look like this: \n" + this.currBoard.toString();
     for (int i = 0; i < this.possMoves.size(); ++i){
-      //System.out.println("this.possMoves.elementAt(i).toString(): " + this.possMoves.elementAt(i).hm.toString());
-      moves = moves + this.possMoves.elementAt(i).toString();
+      moves = moves + "this.possMoves.elementAt(i).toString(): " + this.possMoves.elementAt(i).hm.toString() + "\n";
     }
-
     return moves;
   }
 
   public static void main(String[] args){
-    //System.out.println("Oodles of noodles");
     char w = HexBoard.WHITE;
     GameNode potato = new GameNode(false, new HexBoard(3,3), new HexMove(1, 2, 3), w);
-    //System.out.println(potato.toString());
     GameNode tomato = new GameNode(false, new HexBoard(3,3), new HexMove(3,2,1), w);
     potato.addMove(tomato);
-    //System.out.println(potato.toSillyString());
+    System.out.println(potato.toSillyString());
   }
 
 }
