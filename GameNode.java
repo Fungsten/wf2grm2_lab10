@@ -9,7 +9,7 @@ public class GameNode{
   boolean isWin;
   HexBoard currBoard;
   char color;
-  Vector<GameNode> possMoves;
+  Vector<GameNode> children;
   HexMove hm;
 
   public GameNode(boolean isWin, HexBoard hb, HexMove hm, char color){
@@ -17,35 +17,34 @@ public class GameNode{
     this.currBoard = hb;
     this.color = color;
     this.hm = hm;
-    this.possMoves = new Vector<GameNode>();
+    this.children = new Vector<GameNode>();
   }
 
-  public void addMove(GameNode gn){
-    this.possMoves.add(gn);
+  public void addChild(GameNode gn){
+    this.children.add(gn);
   }
 
-  public void removeMove(GameNode gn){
-    this.possMoves.remove(gn);
+  public void removeChild(GameNode gn){
+    this.children.remove(gn);
   }
 
-  public HexMove getMove(){
+  public HexMove getChild(){
     return hm;
   }
 
   public String toSillyString(){
     String moves = "";
-    moves = moves + "I look like this: \n" + this.currBoard.toString();
-    for (int i = 0; i < this.possMoves.size(); ++i){
-      moves = moves + "this.possMoves.elementAt(i).toString(): " + this.possMoves.elementAt(i).hm.toString() + "\n";
+    moves = moves + "The current board looks like this: \n" + this.currBoard.toString();
+    for (int i = 0; i < this.children.size(); ++i){
+      moves = moves + "Possible move " + (i + 1) + ": " + this.children.elementAt(i).hm.toString() + "\n";
     }
     return moves;
   }
 
   public static void main(String[] args){
-    char w = HexBoard.WHITE;
-    GameNode potato = new GameNode(false, new HexBoard(3,3), new HexMove(1, 2, 3), w);
-    GameNode tomato = new GameNode(false, new HexBoard(3,3), new HexMove(3,2,1), w);
-    potato.addMove(tomato);
+    GameNode potato = new GameNode(false, new HexBoard(3,3), new HexMove(1, 2, 3), HexBoard.WHITE);
+    GameNode tomato = new GameNode(false, new HexBoard(3,3), new HexMove(3,2,1), HexBoard.BLACK);
+    potato.addChild(tomato);
     System.out.println(potato.toSillyString());
   }
 
