@@ -34,7 +34,7 @@ public class GameNode{
 
   public String toSillyString(){
     String moves = "";
-    moves = moves + "The current board looks like this: \n" + this.currBoard.toString();
+    moves = moves + "The board will look like this: \n" + this.currBoard.toString();
     for (int i = 0; i < this.children.size(); ++i){
       moves = moves + "Possible move " + (i + 1) + ": " + this.children.elementAt(i).hm.toString() + "\n";
     }
