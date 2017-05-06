@@ -42,7 +42,7 @@ public class GameTree{
   public void populate(GameNode parent){
     // Fill vector with next levelo of possible moves for after parent's move
     Vector<HexMove> moves = parent.currBoard.moves(parent.color);
-    if (moves.size() == 0){
+    if (moves.size() == 0 || parent.isWin == true){
       // no more possible moves, so no more children to add; pass
       return;
     } else {
