@@ -40,20 +40,12 @@ public class GamePlay{
   }
 
   /*public Player go(){
-    if (this.h1 != null){
-      while (!this.h1.go().equals(this.h1)){
-        this.h1.play();
-      }
-    } else if (this.r1 != null){
-
-    } else {
-      this.c1.go();
-    }
-  }*/
-
-  /*protected Player goHelper(GameNode node, Player){
 
   }*/
+
+  protected GameNode goHelper(GameNode node, Player player, Player opponent){
+    return player.play(node, opponent);
+  }
 
   public static void main(String args[]){
     Scanner in = new Scanner(System.in);

@@ -6,33 +6,45 @@ import structure5.*;
 import java.util.Scanner;
 
 public class HumanPlayer implements Player{
-  protected char hColor;
+  protected char color;
 
   public HumanPlayer(char color){
-    this.hColor = color;
+    this.color = color;
   }
 
   // pre: node is a non-null GameNode node; opponent is the player to play after this player
   // post: game is played from this node on, winning player is returned
-  public Player play(GameNode node, Player opponent){
+  public GameNode play(GameNode node, Player opponent){
     // Heavily modeled after HexBoard's main method
     HexBoard board = node.currBoard;
-    Vector<HexMove> moves = node.currBoard.moves(node.color);
+    Vector<GameNode> moves = node.children;
     System.out.println(node.toSillyString());
     Scanner in = new Scanner(System.in);
     System.out.println("Please type one of the given integers: ");
-    int hMove = in.nextInt();
-    board = new HexBoard(board, moves.elementAt(hMove));
-    System.out.println("This is the current board:");
-    System.out.println(board.toString());
+    int hMove = in.nextInt() + 1;
+    if (hMove > moves.size()){
+      System.out.println("You have typed an invalid move. If you choose to type an invalid move again, you will forfeit the game.");
+      hMove = in.nextInt() + 1;
+      if (hMove > moves.size()){
+        return node;
+      } else {
+        board = new HexBoard(board, moves.elementAt(hMove).hm);
+      }
+    }
+    board = new HexBoard(board, moves.elementAt(hMove).hm);
 
-    if (board.win(this.hColor)){
+    GameNode newNode = new GameNode(board.win(color), board, moves.elementAt(hMove).hm, opponent.color);
+
+    System.out.println("This is the current board:");
+    System.out.println(newNode.currBoard.toString());
+
+    if (newNode.currBoard.win(this.color)){
       // If HumanPlayer wins, return HumanPlayer
       System.out.println("HumanPlayer wins!");
-      return this;
+      return node;
     } else {
-      // If HumanPlayer didn't win, return opponent so that play may continue
-      return opponent;
+      // If HumanPlayer didn't win, return current node
+      return newNode;
     }
   }
 }
