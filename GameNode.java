@@ -33,7 +33,7 @@ public class GameNode{
   }
 
   //removes a gamenode from the children of the parent node
-  //(not actually used, but for the purposes of completion / debugging)
+  //used for pruning trees and turning them into little bonsais
   public void removeChild(GameNode gn){
     this.children.remove(gn);
   }
