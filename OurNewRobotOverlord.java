@@ -3,6 +3,7 @@ A file written by Grace and Will
 
 */
 import structure5.*;
+import java.util.Random;
 
 public class OurNewRobotOverlord implements Player{
   protected char rpColor;
@@ -10,7 +11,7 @@ public class OurNewRobotOverlord implements Player{
 
   public OurNewRobotOverlord(char color, GameTree tree){
     this.rpColor = color;
-    this.gametree = tree;
+    this.gameTree = new GameTree();
   }
 
   // pre: node is a non-null GameNode node; opponent is the player to play after this player
@@ -35,7 +36,4 @@ public class OurNewRobotOverlord implements Player{
       return opponent;
     }
   }
-}
-
-
 }
