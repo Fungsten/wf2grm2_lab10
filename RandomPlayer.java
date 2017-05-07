@@ -6,10 +6,10 @@ import structure5.*;
 import java.util.Random;
 
 public class RandomPlayer implements Player{
-  protected char rpColor;
+  protected char color;
 
   public RandomPlayer(char color){
-    this.rpColor = color;
+    this.color = color;
   }
 
   // pre: node is a non-null GameNode node; opponent is the player to play after this player
@@ -25,7 +25,7 @@ public class RandomPlayer implements Player{
     System.out.println("This is the current board:");
     System.out.println(board.toString());
 
-    if (board.win(this.rpColor)){
+    if (board.win(this.color)){
       // If RandomPlayer wins, return RandomPlayer
       System.out.println("A monkey on a typewriter wins!");
       return this;
