@@ -3,6 +3,8 @@ Will Fung and Grace Mazzarella
 You will notice Groot has once again come back.
 If you haven't already, you should go see Guardians of the Galaxy Vol. 2
 (this project not endorsed by Marvel or Disney)
+Answers to thought questions at the bottom of the README because the
+instructions never indicated where you wanted them.
 
 Dontcha love very verbose and vindictive descriptions?
 */
@@ -20,7 +22,7 @@ public class GameTree{
   //Starting from a game board at its beginning state, this creates the first node
   //that symbolizes the zeroth move in a game
   public GameTree(){
-    this.startBoard = new HexBoard();
+    this.startBoard = new HexBoard(3, 3);
     this.groot = new GameNode(false, this.startBoard, null, HexBoard.BLACK);
     this.nodeNumber = 0;
   }

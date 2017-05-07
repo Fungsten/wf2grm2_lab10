@@ -1,5 +1,9 @@
 /*
 Will Fung and Grace Mazzarella
+
+I hope you like nodes more than we do.
+Because it's always better to like something than to dislike something
+Unless it's the plague. Or lobotomy. Or pineapple on pizza. That sort of thing.
 */
 
 import structure5.*;
