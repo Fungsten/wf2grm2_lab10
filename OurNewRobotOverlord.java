@@ -1,6 +1,6 @@
 /*
 A file written by Grace and Will
-*/
+
 import structure5.*;
 
 public class OurNewRobotOverlord implements Player{
@@ -39,7 +39,7 @@ public class OurNewRobotOverlord implements Player{
       //prune tree here and we will be one step closer to world domination
       //*insert evil laugh here*
 
-      
+
       node.removeChild(node);
       //remove child, if node does not have children, forfeit and prune
 
@@ -49,6 +49,4 @@ public class OurNewRobotOverlord implements Player{
     }
   }
 }
-
-
-}
+*/

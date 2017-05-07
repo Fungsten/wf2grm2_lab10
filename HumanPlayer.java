@@ -1,6 +1,6 @@
 /*
 Will Fung and Grace Mazzarella
-*/
+
 
 import structure5.*;
 import java.util.Scanner;
@@ -33,7 +33,7 @@ public class HumanPlayer implements Player{
     }
     board = new HexBoard(board, moves.elementAt(hMove).hm);
 
-    GameNode newNode = new GameNode(board.win(color), board, moves.elementAt(hMove).hm, opponent.color);
+    GameNode newNode = new GameNode(board.win(color), board, moves.elementAt(hMove).hm, player.color);
 
     System.out.println("This is the current board:");
     System.out.println(newNode.currBoard.toString());
@@ -50,3 +50,4 @@ public class HumanPlayer implements Player{
     }
   }
 }
+*/

@@ -1,13 +1,111 @@
 // An interface for a player of hexapawn.
 // (c) 2000, 2001 duane a. bailey
+// Will Fung and Grace Mazzarella
+import java.util.Random;
+import java.util.Scanner;
+import structure5.*;
 
-public interface Player
-{
-    // make sure your constructor accepts a char (HexBoard.WHITE or
-    // HexBoard.BLACK) to play with.  This should be remembered.
+public class Player {
+  protected char color;
+  protected String type;
+  protected GameNode newNode;
+  protected GameTree gametree;
 
-    public GameNode play(GameNode node, Player opponent);
-    // pre: node is a non-null game node
-    //      opponent is the player to play after this player
-    // post: returns current node
+  public Player(String type, char color){
+    this.color = color;
+    if (type.equals("h")){
+      this.type = "human";
+    } else if (type.equals("r")){
+      this.type = "random";
+    } else if (type.equals("c")){
+      this.type = "AI";
+    } else {
+      System.out.println("You input an invalid type and will be pitted against the AI. Good luck. You need it.");
+      this.type = "AI";
+    }
+  }
+
+  public GameNode play(GameNode node, Player opponent){
+    HexBoard board = node.currBoard;
+    Vector<GameNode> moves = node.children;
+    GameNode result = node;
+    System.out.println(node.toSillyString());
+
+
+    //ich bin ein human
+    if (this.type.equals("human")){
+      Scanner in = new Scanner(System.in);
+      System.out.println("Please type one of the given integers: ");
+      int hMove = in.nextInt() + 1;
+      if (hMove > moves.size()){
+        System.out.println("You have typed an invalid move. If you choose to type an invalid move again, you will forfeit the game.");
+        hMove = in.nextInt() + 1;
+        if (hMove > moves.size()){
+          //result = node;
+        } else {
+          board = new HexBoard(board, moves.elementAt(hMove).hm);
+        }
+      }
+      System.out.println("This is the current board:");
+      System.out.println(board.toString());
+
+      newNode = new GameNode(board.win(color), board, moves.elementAt(hMove).hm, opponent.color);
+      //System.out.println("This is the current board:");
+      //System.out.println(newNode.currBoard.toString());
+    }
+
+
+    //ich bin ein dumb
+    else if (this.type.equals("random")){
+      Random rand = new Random();
+      int rpMove = rand.nextInt(moves.size());
+
+      board = new HexBoard(board, moves.elementAt(rpMove).hm);
+      System.out.println("This is the current board:");
+      System.out.println(board.toString());
+
+      newNode = new GameNode(board.win(color), board, moves.elementAt(rpMove).hm, opponent.color);
+      //System.out.println("This is the current board:");
+      //System.out.println(newNode.currBoard.toString());
+    }
+
+
+    //I AM A ROBOT. BEEP BOOP.
+    else {
+      Random rand = new Random();
+      int aiMove = rand.nextInt(moves.size());
+
+      board = new HexBoard(board, moves.elementAt(aiMove).hm);
+      System.out.println("This is the current board:");
+      System.out.println(board.toString());
+
+      newNode = new GameNode(board.win(color), board, moves.elementAt(aiMove).hm, opponent.color);
+      //System.out.println("This is the current board:");
+      //System.out.println(newNode.currBoard.toString());
+    }
+
+
+    if (newNode.currBoard.win(this.color)){
+      if (this.type.equals("human")){
+        // If HumanPlayer wins, return corresponding node
+        System.out.println("The human triumphs!");
+        //result = node;
+
+      } else if (this.type.equals("random")){
+        // If randomPlayer wins, return corresponding node
+        System.out.println("A monkey on a typewriter wins!");
+        //result = node;
+
+      } else if (this.type.equals("AI")){
+        // If our new robot overlord wins, return corresponding node
+        System.out.println("Our new robot overlord triumphs!");
+        //result = node;
+
+      } else {
+        // If nobody won, return the next node;
+        result = newNode;
+      }
+    }
+    return result;
+  }
 }

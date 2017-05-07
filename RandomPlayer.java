@@ -1,6 +1,6 @@
 /*
 Will Fung and Grace Mazzarella
-*/
+
 
 import structure5.*;
 import java.util.Random;
@@ -35,3 +35,4 @@ public class RandomPlayer implements Player{
     }
   }
 }
+*/
