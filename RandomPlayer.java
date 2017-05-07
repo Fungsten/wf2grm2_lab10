@@ -1,6 +1,6 @@
 /*
 Will Fung and Grace Mazzarella
-
+have made a better version of this in Player.java
 
 import structure5.*;
 import java.util.Random;

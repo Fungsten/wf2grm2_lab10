@@ -8,12 +8,8 @@ public class GamePlay{
 
   GameTree groot;
   GameNode currNode;
-  HumanPlayer h1;
-  HumanPlayer h2;
-  RandomPlayer r1;
-  RandomPlayer r2;
-  OurNewRobotOverlord c1;
-  OurNewRobotOverlord c2;
+  Player p1;
+  Player p2;
   int p1Wins;
   int p2Wins;
 
@@ -22,18 +18,18 @@ public class GamePlay{
     this.groot = new GameTree();
     this.currNode = groot.groot;
     if (playerOne.equals("h")){
-      this.h1 = new HumanPlayer(HexBoard.WHITE);
+      this.p1 = new Player(playerOne, HexBoard.WHITE);
     } else if (playerOne.equals("r")){
-      this.r1 = new RandomPlayer(HexBoard.WHITE);
+      this.p1 = new Player(playerOne, HexBoard.WHITE);
     } else {
-      this.c1 = new OurNewRobotOverlord(HexBoard.WHITE, new GameTree());
+      this.p1 = new Player(playerOne, HexBoard.WHITE);
     }
     if (playerTwo.equals("h")){
-      this.h2 = new HumanPlayer(HexBoard.BLACK);
+      this.p2 = new Player(playerTwo, HexBoard.BLACK);
     } else if (playerTwo.equals("r")){
-      this.r2 = new RandomPlayer(HexBoard.BLACK);
+      this.p2 = new Player(playerTwo, HexBoard.BLACK);
     } else {
-      this.c2 = new OurNewRobotOverlord(HexBoard.BLACK, new GameTree());
+      this.p2 = new Player(playerTwo, HexBoard.BLACK);
     }
     this.p1Wins = 0;
     this.p2Wins = 0;

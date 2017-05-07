@@ -1,6 +1,6 @@
 /*
 Will Fung and Grace Mazzarella
-
+have rendered this useless
 
 import structure5.*;
 import java.util.Scanner;

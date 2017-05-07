@@ -1,6 +1,6 @@
-// An interface for a player of hexapawn.
+// Basic layout provided by Duane A. Bailey
 // (c) 2000, 2001 duane a. bailey
-// Will Fung and Grace Mazzarella
+// Heavy modification done by Will Fung and Grace Mazzarella
 import java.util.Random;
 import java.util.Scanner;
 import structure5.*;
@@ -25,6 +25,9 @@ public class Player {
     }
   }
 
+  // Pre: takes a non-null GameNode and a valid player
+  // Post: if no one has won, returns a GameNode based on the chosen move
+  //       if someone has won, returns the input GameNode
   public GameNode play(GameNode node, Player opponent){
     HexBoard board = node.currBoard;
     Vector<GameNode> moves = node.children;
@@ -50,7 +53,7 @@ public class Player {
       System.out.println("This is the current board:");
       System.out.println(board.toString());
 
-      newNode = new GameNode(board.win(color), board, moves.elementAt(hMove).hm, opponent.color);
+      newNode = new GameNode(board.win(color), board, opponent.color, node, moves.elementAt(hMove).hm);
       //System.out.println("This is the current board:");
       //System.out.println(newNode.currBoard.toString());
     }
@@ -65,7 +68,7 @@ public class Player {
       System.out.println("This is the current board:");
       System.out.println(board.toString());
 
-      newNode = new GameNode(board.win(color), board, moves.elementAt(rpMove).hm, opponent.color);
+      newNode = new GameNode(board.win(color), board, opponent.color, node, moves.elementAt(rpMove).hm);
       //System.out.println("This is the current board:");
       //System.out.println(newNode.currBoard.toString());
     }
@@ -80,7 +83,7 @@ public class Player {
       System.out.println("This is the current board:");
       System.out.println(board.toString());
 
-      newNode = new GameNode(board.win(color), board, moves.elementAt(aiMove).hm, opponent.color);
+      newNode = new GameNode(board.win(color), board, opponent.color, node, moves.elementAt(aiMove).hm);
       //System.out.println("This is the current board:");
       //System.out.println(newNode.currBoard.toString());
     }

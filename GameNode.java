@@ -13,18 +13,20 @@ public class GameNode{
   boolean isWin;
   HexBoard currBoard;
   char color;
+  GameNode parent;
   Vector<GameNode> children;
   HexMove hm;
 
   //creates a gamenode with parameters detailing whether or not the node
   //is a win, what the board state at the node is, what move got the board
   //to such a state, and whose turn the node represents
-  public GameNode(boolean isWin, HexBoard hb, HexMove hm, char color){
+  public GameNode(boolean isWin, HexBoard hb, char color, GameNode parent, HexMove hm){
     this.isWin = isWin;
     this.currBoard = hb;
     this.color = color;
-    this.hm = hm;
+    this.parent = parent;
     this.children = new Vector<GameNode>();
+    this.hm = hm;
   }
 
   //adds a gamenode to the children of the parent node
@@ -38,9 +40,14 @@ public class GameNode{
     this.children.remove(gn);
   }
 
+  // returns a reference to the parent node
+  public GameNode getParent(){
+    return this.parent;
+  }
+
   //returns the move of the node
-  public HexMove getChild(){
-    return hm;
+  public HexMove getMove(){
+    return this.hm;
   }
 
   //we get to see the node in string format
@@ -57,8 +64,8 @@ public class GameNode{
   //you say potahto, I say potato
   //you say tomato, I say tornado
   public static void main(String[] args){
-    GameNode potato = new GameNode(false, new HexBoard(3,3), new HexMove(1, 2, 3), HexBoard.WHITE);
-    GameNode tomato = new GameNode(false, new HexBoard(3,3), new HexMove(3,2,1), HexBoard.BLACK);
+    GameNode potato = new GameNode(false, new HexBoard(3,3), HexBoard.WHITE, null, new HexMove(1, 2, 3));
+    GameNode tomato = new GameNode(false, new HexBoard(3,3), HexBoard.BLACK, potato, new HexMove(3, 2, 1));
     potato.addChild(tomato);
     System.out.println(potato.toSillyString());
   }
