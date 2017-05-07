@@ -20,7 +20,7 @@ public class Player {
     } else if (type.equals("c")){
       this.type = "AI";
     } else {
-      System.out.println("You input an invalid type and will be pitted against the AI. Good luck. You need it.");
+      System.out.println("You input an invalid type and will be pitted against the AI. You only have yourself to blame.");
       this.type = "AI";
     }
   }
@@ -38,10 +38,11 @@ public class Player {
       System.out.println("Please type one of the given integers: ");
       int hMove = in.nextInt() + 1;
       if (hMove > moves.size()){
-        System.out.println("You have typed an invalid move. If you choose to type an invalid move again, you will forfeit the game.");
+        System.out.println("You have input an invalid move. If you choose to type an invalid move again, you will forfeit the game.");
         hMove = in.nextInt() + 1;
         if (hMove > moves.size()){
           //result = node;
+          System.out.println("You're not very good at this, are you, mate?");
         } else {
           board = new HexBoard(board, moves.elementAt(hMove).hm);
         }
@@ -88,17 +89,17 @@ public class Player {
     if (newNode.currBoard.win(this.color)){
       if (this.type.equals("human")){
         // If HumanPlayer wins, return corresponding node
-        System.out.println("The human triumphs!");
+        System.out.println("The human actually triumphs!");
         //result = node;
 
       } else if (this.type.equals("random")){
         // If randomPlayer wins, return corresponding node
-        System.out.println("A monkey on a typewriter wins!");
+        System.out.println("A monkey on a typewriter wins! Seriously?");
         //result = node;
 
       } else if (this.type.equals("AI")){
         // If our new robot overlord wins, return corresponding node
-        System.out.println("Our new robot overlord triumphs!");
+        System.out.println("Our new robot overlord triumphs! You have doomed us all.");
         //result = node;
 
       } else {
