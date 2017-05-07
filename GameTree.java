@@ -25,6 +25,7 @@ public class GameTree{
     this.startBoard = new HexBoard(3, 3);
     this.groot = new GameNode(false, this.startBoard, HexBoard.BLACK, null, null);
     this.nodeNumber = 0;
+    populate(this.groot);
   }
 
   // Takes a GameNode and gives it children based on the possible moves allowed by the current board

@@ -8,8 +8,8 @@ import structure5.*;
 public class Player {
   protected char color;
   protected String type;
-  protected GameNode newNode;
-  protected GameTree gametree;
+  protected GameNode currNode;
+  //protected GameTree gametree;
 
   public Player(String type, char color){
     this.color = color;
@@ -23,6 +23,7 @@ public class Player {
       System.out.println("You input an invalid type and will be pitted against the AI. You only have yourself to blame.");
       this.type = "AI";
     }
+    this.currNode = null;
   }
 
   // Pre: takes a non-null GameNode and a valid player
@@ -46,6 +47,7 @@ public class Player {
         if (hMove > moves.size()){
           //result = node;
           System.out.println("You're not very good at this, are you, mate?");
+          return result;
         } else {
           board = new HexBoard(board, moves.elementAt(hMove).hm);
         }
@@ -54,8 +56,6 @@ public class Player {
       System.out.println(board.toString());
 
       newNode = new GameNode(board.win(color), board, opponent.color, node, moves.elementAt(hMove).hm);
-      //System.out.println("This is the current board:");
-      //System.out.println(newNode.currBoard.toString());
     }
 
 
@@ -69,8 +69,6 @@ public class Player {
       System.out.println(board.toString());
 
       newNode = new GameNode(board.win(color), board, opponent.color, node, moves.elementAt(rpMove).hm);
-      //System.out.println("This is the current board:");
-      //System.out.println(newNode.currBoard.toString());
     }
 
 
@@ -84,8 +82,6 @@ public class Player {
       System.out.println(board.toString());
 
       newNode = new GameNode(board.win(color), board, opponent.color, node, moves.elementAt(aiMove).hm);
-      //System.out.println("This is the current board:");
-      //System.out.println(newNode.currBoard.toString());
     }
 
 
@@ -110,6 +106,7 @@ public class Player {
         result = newNode;
       }
     }
+    this.currNode = result;
     return result;
   }
 }

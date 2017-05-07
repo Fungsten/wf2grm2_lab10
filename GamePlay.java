@@ -6,7 +6,7 @@ import structure5.*;
 
 public class GamePlay{
 
-  GameTree groot;
+  GameTree root;
   GameNode currNode;
   Player p1;
   Player p2;
@@ -15,8 +15,8 @@ public class GamePlay{
 
 
   public GamePlay(String playerOne, String playerTwo){
-    this.groot = new GameTree();
-    this.currNode = groot.groot;
+    this.root = new GameTree();
+    this.currNode = root.groot;
     if (playerOne.equals("h")){
       this.p1 = new Player(playerOne, HexBoard.WHITE);
     } else if (playerOne.equals("r")){
@@ -35,20 +35,41 @@ public class GamePlay{
     this.p2Wins = 0;
   }
 
-  /*public Player go(){
+  protected Player oppPlayer(Player currPlayer){
+    if (currPlayer.equals(this.p1)){
+      return this.p2;
+    } else {
+      return this.p1;
+    }
+  }
 
-  }*/
+  public void go(){
+    Player currPlayer = this.p1;
+    GameNode playedNode = this.root.groot;
 
-  protected GameNode goHelper(GameNode node, Player player, Player opponent){
-    return player.play(node, opponent);
+    while (!currPlayer.currNode.equals(playedNode)){
+      currPlayer.play(playedNode, oppPlayer(currPlayer));
+      currPlayer = oppPlayer(currPlayer);
+      playedNode = currPlayer.currNode;
+    }
+    if (currPlayer.equals(this.p1)){
+      ++this.p1Wins;
+    } else {
+      ++this.p2Wins;
+    }
   }
 
   public static void main(String args[]){
-    Scanner in = new Scanner(System.in);
+    /*Scanner in = new Scanner(System.in);
+    System.out.println("Player 1: please input 'h' to play as yourself, 'r' to watch a random player play, or 'c' to watch a learning computer play.");
     String arg1 = in.next();
-    String arg2 = in.next();
-    GamePlay hexapawn = new GamePlay(arg1, arg2);
-    //hexapawn.go();
+    System.out.println("Player 2: please input 'h' to play as yourself, 'r' to watch a random player play, or 'c' to watch a learning computer play.");
+    String arg2 = in.next();*/
+    GamePlay hexapawn = new GamePlay("h", "r");
+    //System.out.println(hexapawn.currNode.children.size());
+    hexapawn.go();
+    System.out.println("P1 wins: " + hexapawn.p1Wins);
+    System.out.println("P2 wins: " + hexapawn.p2Wins);
   }
 
 }
