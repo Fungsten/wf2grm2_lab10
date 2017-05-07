@@ -27,7 +27,7 @@ public class RandomPlayer implements Player{
 
     if (board.win(this.rpColor)){
       // If RandomPlayer wins, return RandomPlayer
-      System.out.println("RandomPlayer wins!");
+      System.out.println("A monkey on a typewriter wins!");
       return this;
     } else {
       // If RandomPlayer didn't win, return opponent so that play may continue

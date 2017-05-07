@@ -45,7 +45,7 @@ public class GameNode{
 
   //we get to see the node in string format
   //because humans need to read this too
-  public String toSillyString(){
+  public String toSillyString(){ //literally what do you expect, there's already a toString method and my head hurts and this is silly
     String moves = "";
     moves = moves + "The board will look like this: \n" + this.currBoard.toString();
     for (int i = 0; i < this.children.size(); ++i){

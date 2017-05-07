@@ -28,7 +28,7 @@ public class HumanPlayer implements Player{
 
     if (board.win(this.hColor)){
       // If HumanPlayer wins, return HumanPlayer
-      System.out.println("HumanPlayer wins!");
+      System.out.println("The human triumphs!");
       return this;
     } else {
       // If HumanPlayer didn't win, return opponent so that play may continue

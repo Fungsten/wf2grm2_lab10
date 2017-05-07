@@ -1,17 +1,19 @@
 /*
 A file written by Grace and Will
-
 */
 import structure5.*;
-import java.util.Random;
 
 public class OurNewRobotOverlord implements Player{
   protected char rpColor;
   protected GameTree gameTree;
 
+
+  //the learning computer player is basically just the random player
+  //the important difference is that tue computer player's options are increasingly
+  //limited as more and more games are played
   public OurNewRobotOverlord(char color, GameTree tree){
     this.rpColor = color;
-    this.gameTree = new GameTree();
+    this.gametree = tree;
   }
 
   // pre: node is a non-null GameNode node; opponent is the player to play after this player
@@ -33,7 +35,20 @@ public class OurNewRobotOverlord implements Player{
       return this;
     } else {
       // If our new robot overlord didn't win, return opponent so that play may continue
+
+      //prune tree here and we will be one step closer to world domination
+      //*insert evil laugh here*
+
+      
+      node.removeChild(node);
+      //remove child, if node does not have children, forfeit and prune
+
+
+
       return opponent;
     }
   }
+}
+
+
 }
