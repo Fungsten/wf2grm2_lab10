@@ -95,6 +95,7 @@ public class GamePlay{
   }
 
   public static void main(String args[]){
+    // UNCOMMENT THIS WILL
     /*Scanner in = new Scanner(System.in);
     System.out.println("Player 1: please input 'h' to play as yourself, 'r' to watch a random player play, or 'c' to watch a learning computer play.");
     String arg1 = in.next();
@@ -103,7 +104,8 @@ public class GamePlay{
     System.out.println("Player 2: please input 'h' to play as yourself, 'r' to watch a random player play, or 'c' to watch a learning computer play.");
     String arg3 = in.next();
     System.out.println("Player 2: please input 'w' to play as white and go first or 'b' to play as black and go second.")
-    String arg4 = in.next();*/
+    String arg4 = in.next();
+    GamePlay hexapawn = new GamePlay(arg1, arg2, arg3, arg4);*/
     GamePlay hexapawn = new GamePlay("h", "w", "r", "b");
     //System.out.println(hexapawn.oppPlayer(hexapawn.p1).type);
     //System.out.println(hexapawn.p2.type);
