@@ -11,8 +11,11 @@ public class GamePlay{
   Player p2;
   int p1Wins;
   int p2Wins;
+  int i = 2000; //number of iterations or games played between computer / random players
 
 
+  //we have a GamePlay object thing which takes the arguments of player one's type, its color assignment
+  //and then the same for player two
   public GamePlay(String playerOne, String colorOne, String playerTwo, String colorTwo){
     this.root = new GameTree();
     if (playerOne.equals("h")){
@@ -43,7 +46,8 @@ public class GamePlay{
     }
   }
 
-  public void go(){
+  //this makes the game actually go
+  public void go(){ //well, we're not actually playing Go here, nor is it really chess...but you get the drift
     Player currPlayer = this.p1;
     GameNode playedNode = this.root.groot;
 
@@ -67,15 +71,17 @@ public class GamePlay{
         //break;
       //}
     }
+
+    //the following tallies total wins per player
     if (currPlayer.equals(this.p1)){
+      System.out.println("Player One wins!");
       ++this.p1Wins;
     } else {
+      System.out.println("Player Two wins!");
       ++this.p2Wins;
     }
 
-    
-
-
+    System.out.println(playedNode.toSillyString()); //prints out final board state
 
 
     // Ask to play again
@@ -100,16 +106,20 @@ public class GamePlay{
           return;
         }
       }
+    } else { //this is for when pitting two computers or randoms in some combination against each other
+      //to simulate many games at once
+      while (i > 0){
+        i--;
+        this.go();
+      }
     }
   }
 
-  public void winCheck(){
-    return;
-  }
+
 
   public static void main(String args[]){
-    // UNCOMMENT THIS WILL
-    /*Scanner in = new Scanner(System.in);
+    // RELEASE THE KRAKEN
+    Scanner in = new Scanner(System.in);
     System.out.println("Player 1: please input 'h' to play as yourself, 'r' to watch a random player play, or 'c' to watch a learning computer play.");
     String arg1 = in.next();
     System.out.println("Player 1: please input 'w' to play as white and go first or 'b' to play as black and go second.")
@@ -119,9 +129,9 @@ public class GamePlay{
     System.out.println("Player 2: please input 'w' to play as white and go first or 'b' to play as black and go second.")
     String arg4 = in.next();
     GamePlay hexapawn = new GamePlay(arg1, arg2, arg3, arg4);*/
-    GamePlay hexapawn = new GamePlay("h", "w", "h", "b");
-    //System.out.println(hexapawn.oppPlayer(hexapawn.p1).type);
-    //System.out.println(hexapawn.p2.type);
+
+    //GamePlay hexapawn = new GamePlay("r", "w", "j", "b");
+
     hexapawn.go();
     System.out.println("P1 wins: " + hexapawn.p1Wins);
     System.out.println("P2 wins: " + hexapawn.p2Wins);

@@ -1,6 +1,11 @@
 // Basic layout provided by Duane A. Bailey
 // (c) 2000, 2001 duane a. bailey
 // Heavy modification done by Will Fung and Grace Mazzarella
+
+//important note: we have taken the liberty of setting up the board such the side
+//on the bottom is white and the top is black
+//because complaints from a chess player
+
 import java.util.Random;
 import java.util.Scanner;
 //import java.util.Math;
@@ -12,6 +17,7 @@ public class Player {
   protected GameNode currNode;
   //protected GameTree gametree;
 
+  //this creates a player of a certain type determined by the input string
   public Player(String type){
     this.color = HexBoard.WHITE; // a default that is changed in GamePlay.java
     if (type.equals("h")){
@@ -27,14 +33,17 @@ public class Player {
     this.currNode = null;
   }
 
+
+  //this sets the color of a particular player
+  //pre: literally anything, we have decided to make it idiot-proof
   public void setColor(String color){
     if (color.equals("b")){
-      this.color = HexBoard.WHITE;
+      this.color = HexBoard.WHITE; //chess player's liberty coming in, basically telling you this is purposeful for a stylistic reason
     } else if (color.equals("w")){
       this.color = HexBoard.BLACK;
     } else {
       System.out.println("You input an invalid choice and have automatically been assigned to white.");
-      this.color = HexBoard.WHITE;
+      this.color = HexBoard.BLACK;
     }
   }
 
@@ -90,10 +99,16 @@ public class Player {
 
       //prunes are dried plums
       if (!newNode.currBoard.win(this.color) || newNode.isWin == true){
+        //kills the grandparent node to prevent because the parent node is the opponent's play
+        //to avoid going down this branch at the control of the current player, this must be done
         newNode.removeChild(newNode.getParent().getParent());
       }
     }
 
+
+/*
+
+  The following win check is purely for flavor. It has been kept here only for the purposes of posterity.
 
     if (newNode.currBoard.win(this.color) || newNode.isWin == true){
       // If there's a win, return a silly String and outside all of this return the current node
@@ -109,7 +124,7 @@ public class Player {
       }
     } else {
       // If nobody won, update the current node and return it
-      System.out.println("No one won");
+      //System.out.println("No one won");
       for (int i = 0; i < node.children.size(); ++i){
         if (newNode.hm.equals(node.children.elementAt(i).hm)){
           this.currNode = node.children.elementAt(i);
@@ -117,5 +132,15 @@ public class Player {
       }
       return this.currNode;
     }
+*/
+
+
+    //for obtaining the moves available for the next turn
+    for (int i = 0; i < node.children.size(); ++i){
+      if (newNode.hm.equals(node.children.elementAt(i).hm)){
+        this.currNode = node.children.elementAt(i);
+      }
+    }
+    return this.currNode;
   }
 }
