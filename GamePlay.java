@@ -59,16 +59,25 @@ public class GamePlay{
     currPlayer = this.oppPlayer(currPlayer);
 
     // Play continues until there is a winner
-    while (!currPlayer.currNode.equals(playedNode)){
+    while (!currPlayer.currNode.equals(playedNode) && playedNode.isWin == false){
       currPlayer.play(playedNode, oppPlayer(currPlayer));
       playedNode = currPlayer.currNode;
       currPlayer = this.oppPlayer(currPlayer);
+      //if (playedNode.isWin ==  true){
+        //break;
+      //}
     }
     if (currPlayer.equals(this.p1)){
       ++this.p1Wins;
     } else {
       ++this.p2Wins;
     }
+
+    
+
+
+
+
     // Ask to play again
     if (this.p1.type.equals("human") || this.p2.type.equals("human")){
       Scanner in = new Scanner(System.in);
@@ -94,6 +103,10 @@ public class GamePlay{
     }
   }
 
+  public void winCheck(){
+    return;
+  }
+
   public static void main(String args[]){
     // UNCOMMENT THIS WILL
     /*Scanner in = new Scanner(System.in);
@@ -106,7 +119,7 @@ public class GamePlay{
     System.out.println("Player 2: please input 'w' to play as white and go first or 'b' to play as black and go second.")
     String arg4 = in.next();
     GamePlay hexapawn = new GamePlay(arg1, arg2, arg3, arg4);*/
-    GamePlay hexapawn = new GamePlay("h", "w", "r", "b");
+    GamePlay hexapawn = new GamePlay("h", "w", "h", "b");
     //System.out.println(hexapawn.oppPlayer(hexapawn.p1).type);
     //System.out.println(hexapawn.p2.type);
     hexapawn.go();
